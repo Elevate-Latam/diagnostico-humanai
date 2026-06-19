@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Índice de Preparación AI · Elevate Consulting</title>
+<style>
+  :root {
+    --navy: #0F1B35;
+    --navy-mid: #1A2D56;
+    --accent: #00C896;
+    --accent-dark: #009970;
+    --accent-light: #E0FBF4;
+    --text: #1A1A2E;
+    --text-muted: #5A5A72;
+    --text-light: #8888A0;
+    --surface: #F7F8FC;
+    --surface-card: #FFFFFF;
+    --border: rgba(15,27,53,0.1);
+    --radius: 12px;
+    --radius-sm: 8px;
+    --score-a: #00C896;
+    --score-b: #F5A623;
+    --score-c: #E2445A;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--surface);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display&display=swap');
+
+  /* ─── Header ─── */
+  .header {
+    background: var(--navy);
+    padding: 1.25rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-brand { display: flex; align-items: center; gap: 10px; }
+  .header-dot { width: 28px; height: 28px; background: var(--accent); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--navy); font-size: 13px; }
+  .header-name { color: #fff; font-size: 14px; font-weight: 500; letter-spacing: 0.02em; }
+  .header-tag { color: rgba(255,255,255,0.45); font-size: 12px; }
+
+  /* ─── Hero ─── */
+  .hero {
+    background: var(--navy);
+    padding: 3.5rem 2rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(0,200,150,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(0,200,150,0.12);
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+  }
+  .hero-eyebrow span { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+  .hero h1 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: clamp(28px, 5vw, 44px);
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero h1 em { color: var(--accent); font-style: normal; }
+  .hero-sub {
+    color: rgba(255,255,255,0.6);
+    font-size: 15px;
+    max-width: 480px;
+    margin: 0 auto 2rem;
+    line-height: 1.7;
+  }
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .hero-pill {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: rgba(255,255,255,0.55);
+    font-size: 13px;
+  }
+  .hero-pill svg { color: var(--accent); }
+
+  /* ─── Progress ─── */
+  .progress-bar-wrap {
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .progress-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  .progress-label { font-size: 13px; color: var(--text-muted); font-weight: 500; }
+  .progress-counter { font-size: 13px; color: var(--text-muted); }
+  .progress-track { height: 4px; background: var(--border); border-radius: 100px; }
+  .progress-fill { height: 4px; background: var(--accent); border-radius: 100px; transition: width 0.4s ease; }
+
+  /* ─── Main layout ─── */
+  .main { max-width: 720px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+  /* ─── Block header ─── */
+  .block-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1.5rem;
+    margin-top: 2.5rem;
+  }
+  .block-badge {
+    background: var(--navy);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+  .block-title { font-size: 13px; color: var(--text-muted); font-weight: 500; }
+
+  /* ─── Question card ─── */
+  .question-card {
+    background: var(--surface-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    transition: border-color 0.2s;
+  }
+  .question-card.answered { border-color: var(--accent); }
+
+  .q-number { font-size: 11px; font-weight: 600; color: var(--accent); letter-spacing: 0.05em; margin-bottom: 0.6rem; }
+  .q-text { font-size: 16px; font-weight: 500; color: var(--text); line-height: 1.5; margin-bottom: 1.25rem; }
+
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+  }
+  .option-label:hover { border-color: rgba(0,200,150,0.4); background: rgba(0,200,150,0.03); }
+  .option-label input[type="radio"] { display: none; }
+  .option-label.selected { border-color: var(--accent); background: var(--accent-light); }
+
+  .option-score {
+    min-width: 32px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(15,27,53,0.06);
+    border-radius: 5px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .option-label.selected .option-score { background: var(--accent); color: #fff; }
+  .option-text { font-size: 14px; color: var(--text); line-height: 1.5; }
+
+  /* ─── CTA button ─── */
+  .cta-wrap { margin-top: 2.5rem; text-align: center; }
+  .btn-primary {
+    background: var(--accent);
+    color: var(--navy);
+    font-size: 15px;
+    font-weight: 700;
+    padding: 14px 36px;
+    border-radius: var(--radius-sm);
+    border: none;
+    cursor: pointer;
+    letter-spacing: 0.01em;
+    transition: background 0.2s, transform 0.1s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--accent-dark); }
+  .btn-primary:active { transform: scale(0.98); }
+  .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .cta-hint { font-size: 12px; color: var(--text-light); margin-top: 10px; }
+
+  /* ─── Result panel ─── */
+  #result-panel { display: none; }
+
+  .result-hero {
+    border-radius: var(--radius);
+    padding: 2.5rem 2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  .result-hero.level-a { background: linear-gradient(135deg, #012D20 0%, #024D37 100%); }
+  .result-hero.level-b { background: linear-gradient(135deg, #2D1E00 0%, #4D3500 100%); }
+  .result-hero.level-c { background: linear-gradient(135deg, #2D0010 0%, #4D001C 100%); }
+
+  .result-score-ring {
+    width: 90px; height: 90px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column;
+    margin: 0 auto 1.25rem;
+    border: 3px solid;
+  }
+  .level-a .result-score-ring { border-color: var(--score-a); }
+  .level-b .result-score-ring { border-color: var(--score-b); }
+  .level-c .result-score-ring { border-color: var(--score-c); }
+
+  .result-score-num { font-size: 28px; font-weight: 700; color: #fff; line-height: 1; }
+  .result-score-den { font-size: 12px; color: rgba(255,255,255,0.5); }
+
+  .result-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 100px;
+    margin-bottom: 1rem;
+  }
+  .level-a .result-badge { background: rgba(0,200,150,0.2); color: var(--score-a); }
+  .level-b .result-badge { background: rgba(245,166,35,0.2); color: var(--score-b); }
+  .level-c .result-badge { background: rgba(226,68,90,0.2); color: var(--score-c); }
+
+  .result-title { font-family: 'DM Serif Display', Georgia, serif; font-size: 24px; color: #fff; margin-bottom: 0.75rem; line-height: 1.3; }
+  .result-desc { font-size: 14px; color: rgba(255,255,255,0.7); line-height: 1.7; max-width: 540px; margin: 0 auto; }
+
+  /* Block scores */
+  .block-scores {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 1.5rem;
+  }
+  .block-score-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 1rem;
+    text-align: center;
+  }
+  .bsc-label { font-size: 11px; color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+  .bsc-score { font-size: 22px; font-weight: 700; color: var(--navy); }
+  .bsc-total { font-size: 12px; color: var(--text-light); }
+
+  /* Progress bars for blocks */
+  .bsc-bar { height: 4px; background: var(--border); border-radius: 100px; margin-top: 8px; }
+  .bsc-bar-fill { height: 4px; border-radius: 100px; }
+
+  /* Result quote */
+  .result-quote {
+    background: var(--navy);
+    border-radius: var(--radius);
+    padding: 1.5rem 2rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+  .result-quote::before { content: '"'; position: absolute; top: 10px; left: 20px; font-size: 60px; color: rgba(0,200,150,0.15); font-family: Georgia; line-height: 1; }
+  .result-quote-text { font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.7; font-style: italic; position: relative; z-index: 1; }
+
+  /* Next step */
+  .next-step {
+    background: var(--accent-light);
+    border: 1px solid rgba(0,200,150,0.3);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .next-step-eyebrow { font-size: 11px; font-weight: 700; color: var(--accent-dark); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+  .next-step-text { font-size: 14px; color: var(--text); line-height: 1.7; }
+
+  /* ─── Lead capture form ─── */
+  .lead-form {
+    background: var(--surface-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  .lead-form h3 { font-size: 18px; font-weight: 600; color: var(--navy); margin-bottom: 0.4rem; }
+  .lead-form p { font-size: 13px; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.5; }
+
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .form-full { grid-column: 1 / -1; }
+
+  .field { display: flex; flex-direction: column; gap: 5px; }
+  .field label { font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+  .field input, .field select {
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    color: var(--text);
+    background: #fff;
+    outline: none;
+    font-family: inherit;
+    transition: border-color 0.15s;
+  }
+  .field input:focus, .field select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(0,200,150,0.12); }
+
+  .field select option { color: var(--text); }
+
+  .form-submit { margin-top: 1.25rem; width: 100%; font-size: 15px; padding: 14px; }
+
+  .privacy-note { font-size: 11px; color: var(--text-light); text-align: center; margin-top: 10px; }
+
+  /* ─── PDF success / contact ─── */
+  #confirmation { display: none; }
+
+  .confirm-card {
+    background: var(--surface-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  .confirm-icon { font-size: 36px; margin-bottom: 1rem; }
+  .confirm-card h3 { font-size: 18px; font-weight: 600; color: var(--navy); margin-bottom: 0.5rem; }
+  .confirm-card p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+
+  .btn-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--navy);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 12px 28px;
+    border-radius: var(--radius-sm);
+    border: none;
+    cursor: pointer;
+    margin-top: 1.25rem;
+    transition: background 0.2s;
+    text-decoration: none;
+  }
+  .btn-download:hover { background: var(--navy-mid); }
+
+  .contact-card {
+    background: var(--navy);
+    border-radius: var(--radius);
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .contact-info h4 { color: #fff; font-size: 16px; font-weight: 600; margin-bottom: 2px; }
+  .contact-info p { color: rgba(255,255,255,0.55); font-size: 13px; }
+
+  .btn-contact {
+    background: var(--accent);
+    color: var(--navy);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 10px 22px;
+    border-radius: var(--radius-sm);
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s;
+  }
+  .btn-contact:hover { background: var(--accent-dark); }
+
+  .email-fallback { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 6px; }
+  .email-fallback a { color: var(--accent); text-decoration: none; }
+
+  /* ─── Footer ─── */
+  .footer {
+    background: var(--navy);
+    text-align: center;
+    padding: 1.5rem;
+    color: rgba(255,255,255,0.35);
+    font-size: 12px;
+  }
+  .footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
+
+  /* ─── Scroll helper ─── */
+  html { scroll-behavior: smooth; }
+
+  @media (max-width: 520px) {
+    .form-grid { grid-template-columns: 1fr; }
+    .block-scores { grid-template-columns: 1fr; }
+    .contact-card { flex-direction: column; }
+    .hero { padding: 2.5rem 1.25rem 3rem; }
+  }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ─ Header ─ -->
+<header class="header">
+  <div class="header-brand">
+    <div class="header-dot">E</div>
+    <div>
+      <div class="header-name">Elevate Consulting</div>
+      <div class="header-tag">Strategic HR · Central America</div>
+    </div>
+  </div>
+  <div style="font-size:12px;color:rgba(255,255,255,0.35);">HUMAN+AI™</div>
+</header>
+
+<!-- ─ Hero ─ -->
+<section class="hero">
+  <div class="hero-eyebrow"><span></span>Diagnóstico gratuito · 3 min</div>
+  <h1>¿Tu empresa está lista para que la <em>IA</em> amplifique lo mejor de tu equipo?</h1>
+  <p class="hero-sub">10 preguntas. 3 dimensiones críticas. Un diagnóstico honesto sobre si tu estructura humana está lista para la era de la IA.</p>
+  <div class="hero-meta">
+    <div class="hero-pill">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      10 preguntas · ~3 minutos
+    </div>
+    <div class="hero-pill">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"/></svg>
+      Resultado inmediato en pantalla
+    </div>
+    <div class="hero-pill">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+      PDF descargable
+    </div>
+  </div>
+</section>
+
+<!-- ─ Progress ─ -->
+<div class="progress-bar-wrap" id="progress-wrap">
+  <div class="progress-meta">
+    <span class="progress-label" id="progress-label">Bloque 1 · Talento y Dirección</span>
+    <span class="progress-counter" id="progress-counter">0 / 10 respondidas</span>
+  </div>
+  <div class="progress-track">
+    <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+  </div>
+</div>
+
+<!-- ─ Quiz ─ -->
+<main class="main" id="quiz-panel">
+
+  <!-- BLOQUE 1 -->
+  <div class="block-header">
+    <span class="block-badge">Bloque 1 · 3 preguntas</span>
+    <span class="block-title">Talento y Dirección — ¿Con quién cuentas de verdad?</span>
+  </div>
+
+  <!-- Q1 -->
+  <div class="question-card" id="card-1">
+    <div class="q-number">PREGUNTA 1 / 10</div>
+    <div class="q-text">¿Sabes exactamente quién de tu equipo puede liderar un proyecto de transformación con IA sin que tú estés presente?</div>
+    <div class="options">
+      <label class="option-label" onclick="select(1,0,this)"><input type="radio" name="q1" value="0"><span class="option-score">0</span><span class="option-text">No — no tengo claridad sobre quién tiene ese criterio</span></label>
+      <label class="option-label" onclick="select(1,1,this)"><input type="radio" name="q1" value="1"><span class="option-score">1</span><span class="option-text">Tengo una idea general, pero no está validada con datos</span></label>
+      <label class="option-label" onclick="select(1,2,this)"><input type="radio" name="q1" value="2"><span class="option-score">2</span><span class="option-text">Hay uno o dos candidatos, aunque sin plan formal</span></label>
+      <label class="option-label" onclick="select(1,3,this)"><input type="radio" name="q1" value="3"><span class="option-score">3</span><span class="option-text">Sí — tengo identificados a los líderes de adopción con criterios claros</span></label>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="question-card" id="card-2">
+    <div class="q-number">PREGUNTA 2 / 10</div>
+    <div class="q-text">¿Tu equipo directivo tiene claridad sobre qué decisiones puede tomar solo y cuáles debe escalar?</div>
+    <div class="options">
+      <label class="option-label" onclick="select(2,0,this)"><input type="radio" name="q2" value="0"><span class="option-score">0</span><span class="option-text">No — todo pasa por mí, no hay criterios definidos</span></label>
+      <label class="option-label" onclick="select(2,1,this)"><input type="radio" name="q2" value="1"><span class="option-score">1</span><span class="option-text">Hay algo implícito, pero no está documentado ni acordado</span></label>
+      <label class="option-label" onclick="select(2,2,this)"><input type="radio" name="q2" value="2"><span class="option-score">2</span><span class="option-text">Tiene algunas guías, aunque con zonas grises importantes</span></label>
+      <label class="option-label" onclick="select(2,3,this)"><input type="radio" name="q2" value="3"><span class="option-score">3</span><span class="option-text">Sí — existe una matriz de autoridad clara y todos la conocen</span></label>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="question-card" id="card-3">
+    <div class="q-number">PREGUNTA 3 / 10</div>
+    <div class="q-text">Si mañana perdieras a tu líder más crítico, ¿tienes a alguien listo para asumir en menos de 30 días?</div>
+    <div class="options">
+      <label class="option-label" onclick="select(3,0,this)"><input type="radio" name="q3" value="0"><span class="option-score">0</span><span class="option-text">No — ningún rol crítico tiene sucesor identificado</span></label>
+      <label class="option-label" onclick="select(3,1,this)"><input type="radio" name="q3" value="1"><span class="option-score">1</span><span class="option-text">Tengo a alguien en mente, pero sin preparación formal</span></label>
+      <label class="option-label" onclick="select(3,2,this)"><input type="radio" name="q3" value="2"><span class="option-score">2</span><span class="option-text">Hay candidatos, aunque en proceso de desarrollo</span></label>
+      <label class="option-label" onclick="select(3,3,this)"><input type="radio" name="q3" value="3"><span class="option-score">3</span><span class="option-text">Sí — tenemos plan de sucesión documentado para los roles críticos</span></label>
+    </div>
+  </div>
+
+  <!-- BLOQUE 2 -->
+  <div class="block-header">
+    <span class="block-badge">Bloque 2 · 4 preguntas</span>
+    <span class="block-title">Autoridad y Cultura — ¿Quién decide qué en tu empresa?</span>
+  </div>
+
+  <!-- Q4 -->
+  <div class="question-card" id="card-4">
+    <div class="q-number">PREGUNTA 4 / 10</div>
+    <div class="q-text">¿Cada uno de tus líderes tiene un plan de desarrollo individual activo — no un taller genérico completado?</div>
+    <div class="options">
+      <label class="option-label" onclick="select(4,0,this)"><input type="radio" name="q4" value="0"><span class="option-score">0</span><span class="option-text">No — nunca hemos trabajado planes individuales formales</span></label>
+      <label class="option-label" onclick="select(4,1,this)"><input type="radio" name="q4" value="1"><span class="option-score">1</span><span class="option-text">Algunos hicieron capacitaciones, pero sin plan propio</span></label>
+      <label class="option-label" onclick="select(4,2,this)"><input type="radio" name="q4" value="2"><span class="option-score">2</span><span class="option-text">Hay algo en proceso, aunque sin seguimiento sistemático</span></label>
+      <label class="option-label" onclick="select(4,3,this)"><input type="radio" name="q4" value="3"><span class="option-score">3</span><span class="option-text">Sí — cada líder tiene un PDI activo alineado al negocio</span></label>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="question-card" id="card-5">
+    <div class="q-number">PREGUNTA 5 / 10</div>
+    <div class="q-text">¿Tu organización puede ejecutar sin que tú desatasques decisiones operativas cada semana?</div>
+    <div class="options">
+      <label class="option-label" onclick="select(5,0,this)"><input type="radio" name="q5" value="0"><span class="option-score">0</span><span class="option-text">No — soy el cuello de botella de prácticamente todo</span></label>
+      <label class="option-label" onclick="select(5,1,this)"><input type="radio" name="q5" value="1"><span class="option-score">1</span><span class="option-text">Parcialmente — algunos temas fluyen, pero los críticos no</span></label>
+      <label class="option-label" onclick="select(5,2,this)"><input type="radio" name="q5" value="2"><span class="option-score">2</span><span class="option-text">Mayormente sí, aunque hay áreas que todavía dependen de mí</span></label>
+      <label class="option-label" onclick="select(5,3,this)"><input type="radio" name="q5" value="3"><span class="option-score">3</span><span class="option-text">Sí — mi equipo opera con autonomía real la mayoría del tiempo</span></label>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="question-card" id="card-6">
+    <div class="q-number">PREGUNTA 6 / 10</div>
+    <div class="q-text">¿Tu cultura organizacional retendría a tu talento clave durante un proceso de cambio grande?</div>
+    <div class="options">
+      <label class="option-label" onclick="select(6,0,this)"><input type="radio" name="q6" value="0"><span class="option-score">0</span><span class="option-text">No — ya he perdido gente clave cuando hubo incertidumbre</span></label>
+      <label class="option-label" onclick="select(6,1,this)"><input type="radio" name="q6" value="1"><span class="option-score">1</span><span class="option-text">No estoy seguro — no tenemos mecanismos claros de retención</span></label>
+      <label class="option-label" onclick="select(6,2,this)"><input type="radio" name="q6" value="2"><span class="option-score">2</span><span class="option-text">Creo que sí, aunque no tengo datos que lo confirmen</span></label>
+      <label class="option-label" onclick="select(6,3,this)"><input type="radio" name="q6" value="3"><span class="option-score">3</span><span class="option-text">Sí — tenemos estrategia de retención documentada y activa</span></label>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="question-card" id="card-7">
+    <div class="q-number">PREGUNTA 7 / 10</div>
+    <div class="q-text">¿Tu equipo sabe qué parte de su rol es irreemplazable por la IA — y la está desarrollando activamente?</div>
+    <div class="options">
+      <label class="option-label" onclick="select(7,0,this)"><input type="radio" name="q7" value="0"><span class="option-score">0</span><span class="option-text">No — nunca hemos tenido esa conversación</span></label>
+      <label class="option-label" onclick="select(7,1,this)"><input type="radio" name="q7" value="1"><span class="option-score">1</span><span class="option-text">Lo intuye solo — sin guía ni criterios del negocio</span></label>
+      <label class="option-label" onclick="select(7,2,this)"><input type="radio" name="q7" value="2"><span class="option-score">2</span><span class="option-text">Lo conversamos, aunque no hay un plan de acción claro</span></label>
+      <label class="option-label" onclick="select(7,3,this)"><input type="radio" name="q7" value="3"><span class="option-score">3</span><span class="option-text">Sí — cada líder sabe qué desarrollar y lo está trabajando</span></label>
+    </div>
+  </div>
+
+  <!-- BLOQUE 3 -->
+  <div class="block-header">
+    <span class="block-badge">Bloque 3 · 3 preguntas</span>
+    <span class="block-title">Adopción y Continuidad — ¿Tiene la IA dueños internos?</span>
+  </div>
+
+  <!-- Q8 -->
+  <div class="question-card" id="card-8">
+    <div class="q-number">PREGUNTA 8 / 10</div>
+    <div class="q-text">¿Tienes definido quién dentro de tu empresa es el responsable del proceso de adopción de IA?</div>
+    <div class="options">
+      <label class="option-label" onclick="select(8,0,this)"><input type="radio" name="q8" value="0"><span class="option-score">0</span><span class="option-text">No — la IA se usa de forma aislada sin nadie que la lidere</span></label>
+      <label class="option-label" onclick="select(8,1,this)"><input type="radio" name="q8" value="1"><span class="option-score">1</span><span class="option-text">Lo estamos conversando, pero no hay un responsable claro</span></label>
+      <label class="option-label" onclick="select(8,2,this)"><input type="radio" name="q8" value="2"><span class="option-score">2</span><span class="option-text">Hay alguien de facto, aunque sin rol ni autoridad formal</span></label>
+      <label class="option-label" onclick="select(8,3,this)"><input type="radio" name="q8" value="3"><span class="option-score">3</span><span class="option-text">Sí — tenemos un líder de adopción con criterios y métricas</span></label>
+    </div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="question-card" id="card-9">
+    <div class="q-number">PREGUNTA 9 / 10</div>
+    <div class="q-text">¿La inversión que has hecho en herramientas de IA está generando resultados medibles en tu empresa?</div>
+    <div class="options">
+      <label class="option-label" onclick="select(9,0,this)"><input type="radio" name="q9" value="0"><span class="option-score">0</span><span class="option-text">No — compramos herramientas, pero casi nadie las usa bien</span></label>
+      <label class="option-label" onclick="select(9,1,this)"><input type="radio" name="q9" value="1"><span class="option-score">1</span><span class="option-text">Algo — hay uso aislado, pero sin impacto en resultados</span></label>
+      <label class="option-label" onclick="select(9,2,this)"><input type="radio" name="q9" value="2"><span class="option-score">2</span><span class="option-text">Parcialmente — algunos equipos avanzan más que otros</span></label>
+      <label class="option-label" onclick="select(9,3,this)"><input type="radio" name="q9" value="3"><span class="option-score">3</span><span class="option-text">Sí — tenemos KPIs claros y la adopción genera ROI medible</span></label>
+    </div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="question-card" id="card-10">
+    <div class="q-number">PREGUNTA 10 / 10</div>
+    <div class="q-text">¿Si tu empresa desapareciera mañana, el conocimiento crítico del negocio está documentado — o vive solo en personas clave?</div>
+    <div class="options">
+      <label class="option-label" onclick="select(10,0,this)"><input type="radio" name="q10" value="0"><span class="option-score">0</span><span class="option-text">Vive principalmente en mí y en 1 o 2 personas clave</span></label>
+      <label class="option-label" onclick="select(10,1,this)"><input type="radio" name="q10" value="1"><span class="option-score">1</span><span class="option-text">Hay algo documentado, pero con vacíos importantes</span></label>
+      <label class="option-label" onclick="select(10,2,this)"><input type="radio" name="q10" value="2"><span class="option-score">2</span><span class="option-text">Bastante documentado, aunque no de forma sistemática</span></label>
+      <label class="option-label" onclick="select(10,3,this)"><input type="radio" name="q10" value="3"><span class="option-score">3</span><span class="option-text">Sí — existe documentación actualizada de procesos y criterios clave</span></label>
+    </div>
+  </div>
+
+  <!-- Submit -->
+  <div class="cta-wrap">
+    <button class="btn-primary" id="btn-result" onclick="showResult()" disabled>Ver mi diagnóstico →</button>
+    <div class="cta-hint" id="pending-hint">Responde todas las preguntas para ver tu resultado</div>
+  </div>
+
+</main>
+
+<!-- ─ RESULT PANEL ─ -->
+<div id="result-panel">
+  <main class="main">
+
+    <!-- Score hero -->
+    <div class="result-hero" id="result-hero">
+      <div class="result-score-ring" id="result-ring">
+        <div class="result-score-num" id="result-num">0</div>
+        <div class="result-score-den">/ 30</div>
+      </div>
+      <div class="result-badge" id="result-badge">—</div>
+      <div class="result-title" id="result-title">—</div>
+      <div class="result-desc" id="result-desc">—</div>
+    </div>
+
+    <!-- Block scores -->
+    <div class="block-scores">
+      <div class="block-score-card">
+        <div class="bsc-label">Talento y Dirección</div>
+        <div class="bsc-score" id="b1-score">0</div>
+        <div class="bsc-total">/ 9 pts</div>
+        <div class="bsc-bar"><div class="bsc-bar-fill" id="b1-bar" style="background:var(--accent);width:0%"></div></div>
+      </div>
+      <div class="block-score-card">
+        <div class="bsc-label">Autoridad y Cultura</div>
+        <div class="bsc-score" id="b2-score">0</div>
+        <div class="bsc-total">/ 12 pts</div>
+        <div class="bsc-bar"><div class="bsc-bar-fill" id="b2-bar" style="background:var(--accent);width:0%"></div></div>
+      </div>
+      <div class="block-score-card">
+        <div class="bsc-label">Adopción y Continuidad</div>
+        <div class="bsc-score" id="b3-score">0</div>
+        <div class="bsc-total">/ 9 pts</div>
+        <div class="bsc-bar"><div class="bsc-bar-fill" id="b3-bar" style="background:var(--accent);width:0%"></div></div>
+      </div>
+    </div>
+
+    <!-- Quote -->
+    <div class="result-quote">
+      <div class="result-quote-text" id="result-quote">—</div>
+    </div>
+
+    <!-- Next step -->
+    <div class="next-step">
+      <div class="next-step-eyebrow">▶ Siguiente paso recomendado</div>
+      <div class="next-step-text" id="result-next">—</div>
+    </div>
+
+    <!-- Lead capture -->
+    <div class="lead-form" id="lead-form">
+      <h3>Recibe tu resultado en PDF</h3>
+      <p>Completa tus datos para descargar el diagnóstico completo y guardar tu resultado.</p>
+      <div class="form-grid">
+        <div class="field form-full">
+          <label>Nombre completo *</label>
+          <input type="text" id="f-name" placeholder="Tu nombre" required>
+        </div>
+        <div class="field form-full">
+          <label>Correo electrónico *</label>
+          <input type="email" id="f-email" placeholder="tu@empresa.com" required>
+        </div>
+        <div class="field form-full">
+          <label>Empresa *</label>
+          <input type="text" id="f-company" placeholder="Nombre de tu empresa" required>
+        </div>
+        <div class="field">
+          <label>Tamaño de empresa</label>
+          <select id="f-size">
+            <option value="">Selecciona…</option>
+            <option>1–10 colaboradores</option>
+            <option>11–50 colaboradores</option>
+            <option>51–200 colaboradores</option>
+            <option>201–500 colaboradores</option>
+            <option>Más de 500 colaboradores</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>País</label>
+          <select id="f-country">
+            <option value="">Selecciona…</option>
+            <option>Guatemala</option>
+            <option>Honduras</option>
+            <option>El Salvador</option>
+            <option>Nicaragua</option>
+            <option>Costa Rica</option>
+            <option>Panamá</option>
+            <option>México</option>
+            <option>Colombia</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="field form-full">
+          <label>Industria</label>
+          <select id="f-industry">
+            <option value="">Selecciona…</option>
+            <option>Servicios Financieros / Banca</option>
+            <option>Manufactura / Industria</option>
+            <option>Retail / Comercio</option>
+            <option>Tecnología</option>
+            <option>Salud / Farmacéutica</option>
+            <option>Construcción / Real Estate</option>
+            <option>Logística / Transporte</option>
+            <option>Agroindustria</option>
+            <option>Consultoría / Servicios Profesionales</option>
+            <option>Educación</option>
+            <option>Otro</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn-primary form-submit" onclick="submitLead()">Descargar mi diagnóstico en PDF →</button>
+      <div class="privacy-note">Tu información es confidencial. No compartimos tus datos con terceros.</div>
+    </div>
+
+    <!-- Confirmation & contact -->
+    <div id="confirmation">
+      <div class="confirm-card">
+        <div class="confirm-icon">✅</div>
+        <h3>¡Listo! Tu diagnóstico está listo.</h3>
+        <p>Haz clic abajo para descargar tu resultado en PDF. También te llegará una copia a tu correo en breve.</p>
+        <button class="btn-download" id="btn-pdf" onclick="downloadPDF()">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Descargar PDF
+        </button>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-info">
+          <h4>Laura Hernández</h4>
+          <p>Estratega en Talento y Cultura · Elevate Consulting</p>
+          <p>Hablemos sobre lo que encontramos en tu diagnóstico.</p>
+        </div>
+        <div>
+          <a class="btn-contact" id="btn-contact" href="#">Escríbeme →</a>
+          <div class="email-fallback">O copia el correo manualmente: <a href="mailto:lhernandez@elevatelatam.com">lhernandez@elevatelatam.com</a></div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<footer class="footer">
+  <p>© 2025 Elevate Consulting · <a href="https://www.elevatelatam.com" target="_blank">elevatelatam.com</a> · Protocolo HUMAN+AI™</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+// ─── State ───────────────────────────────────────────────
+const answers = {};
+const TOTAL = 10;
+
+// Blocks: Q1-3 = B1 (max 9), Q4-7 = B2 (max 12), Q8-10 = B3 (max 9)
+function b1() { return (answers[1]||0)+(answers[2]||0)+(answers[3]||0); }
+function b2() { return (answers[4]||0)+(answers[5]||0)+(answers[6]||0)+(answers[7]||0); }
+function b3() { return (answers[8]||0)+(answers[9]||0)+(answers[10]||0); }
+function total() { return b1()+b2()+b3(); }
+
+// Stored lead data
+let leadData = {};
+
+// ─── Quiz interactions ────────────────────────────────────
+function select(q, score, labelEl) {
+  answers[q] = score;
+  // Deselect siblings
+  document.querySelectorAll(`[name="q${q}"]`).forEach(r => {
+    r.closest('.option-label').classList.remove('selected');
+  });
+  labelEl.classList.add('selected');
+  document.getElementById(`card-${q}`).classList.add('answered');
+  updateProgress();
+}
+
+function updateProgress() {
+  const answered = Object.keys(answers).length;
+  const pct = (answered / TOTAL) * 100;
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-counter').textContent = answered + ' / ' + TOTAL + ' respondidas';
+
+  const btn = document.getElementById('btn-result');
+  const hint = document.getElementById('pending-hint');
+
+  if (answered >= TOTAL) {
+    btn.disabled = false;
+    hint.style.display = 'none';
+    // Update block label
+    document.getElementById('progress-label').textContent = '¡Completo! Ve tu diagnóstico';
+  } else {
+    // Determine current block
+    if (answered < 3) document.getElementById('progress-label').textContent = 'Bloque 1 · Talento y Dirección';
+    else if (answered < 7) document.getElementById('progress-label').textContent = 'Bloque 2 · Autoridad y Cultura';
+    else document.getElementById('progress-label').textContent = 'Bloque 3 · Adopción y Continuidad';
+  }
+}
+
+// ─── Show result ──────────────────────────────────────────
+function showResult() {
+  const t = total();
+  const s1 = b1(), s2 = b2(), s3 = b3();
+
+  // Hide quiz, show result
+  document.getElementById('quiz-panel').style.display = 'none';
+  const rp = document.getElementById('result-panel');
+  rp.style.display = 'block';
+
+  // Determine level
+  let level, badge, title, desc, quote, next;
+
+  if (t >= 24) {
+    level = 'a';
+    badge = 'Estructura lista · 24–30 pts';
+    title = 'Tu empresa está lista para escalar con IA';
+    desc = 'Tienes la base humana para que la IA amplíe lo mejor de tu equipo. Hay líderes con criterio, autoridad distribuida y cultura que retiene. Pero "lista" no significa "completa": la ventana para formalizar se cierra más rápido de lo que el mercado avisa.';
+    quote = 'Tienes la mejor condición para actuar: estructura funcional y equipo con criterio. El siguiente nivel es instalar el sistema de adopción de IA con responsables internos y métricas reales — antes de que la ventana se cierre.';
+    next = 'El Diagnóstico Ejecutivo HUMAN+AI™ te dice exactamente quién está listo para liderar la adopción, dónde están las brechas reales de autoridad y qué estructura necesita tu empresa para que la IA dé retorno en los próximos 90 días — con datos, no con intuición.';
+  } else if (t >= 13) {
+    level = 'b';
+    badge = 'Estructura en construcción · 13–23 pts';
+    title = 'Tu empresa crece — pero su estructura humana no está diseñada para la IA';
+    desc = 'Tienes líderes con potencial y algo de estructura. Pero hay brechas reales: líderes que no deciden solos, talento sin plan de desarrollo, inversión en IA sin responsables internos. Si no se cierran ahora, la IA va a amplificar los problemas que ya existen — no los va a resolver.';
+    quote = 'La IA amplifica lo que ya existe en tu cultura. Si lo que existe son decisiones que nadie toma y dependencia del fundador, ya sabes lo que viene. Puedes cerrarlo ahora — o esperar a que sea urgente.';
+    next = 'Las brechas de este diagnóstico son solo el primer nivel. El Diagnóstico Ejecutivo HUMAN+AI™ mapea a cada líder, valida tu estructura de autoridad e identifica exactamente qué necesita tu empresa para que la IA dé retorno — sin más proyectos piloto aislados.';
+  } else {
+    level = 'c';
+    badge = 'Estructura en riesgo · 0–12 pts';
+    title = 'La IA ya llegó — y tu empresa no está lista para liderarla';
+    desc = 'Los resultados indican que la estructura humana de tu empresa no está preparada para absorber la transformación que la IA exige. Las decisiones siguen concentradas, el talento clave no tiene plan, y la adopción de IA no tiene responsables internos. Ese costo crece cada mes.';
+    quote = 'Lo que describes no es falta de voluntad — es falta de estructura. La IA no va a resolver esto: lo va a exponer. Esto no se resuelve con más esfuerzo tuyo. Se resuelve con un diagnóstico que muestre exactamente dónde están las grietas.';
+    next = 'Cada mes sin estructura cuesta talento, decisiones lentas y ROI perdido en IA. El Diagnóstico Ejecutivo HUMAN+AI™ identifica dónde están las grietas críticas, qué cambios generan resultado en los primeros 90 días y con quién cuentas de verdad para liderar lo que viene.';
+  }
+
+  // Apply level
+  const hero = document.getElementById('result-hero');
+  hero.className = 'result-hero level-' + level;
+
+  document.getElementById('result-num').textContent = t;
+  document.getElementById('result-badge').textContent = badge;
+  document.getElementById('result-title').textContent = title;
+  document.getElementById('result-desc').textContent = desc;
+  document.getElementById('result-quote').textContent = quote;
+  document.getElementById('result-next').textContent = next;
+
+  // Block scores
+  document.getElementById('b1-score').textContent = s1;
+  document.getElementById('b2-score').textContent = s2;
+  document.getElementById('b3-score').textContent = s3;
+
+  const barColor = level === 'a' ? 'var(--score-a)' : level === 'b' ? 'var(--score-b)' : 'var(--score-c)';
+  document.getElementById('b1-bar').style.cssText = `background:${barColor};width:${(s1/9)*100}%`;
+  document.getElementById('b2-bar').style.cssText = `background:${barColor};width:${(s2/12)*100}%`;
+  document.getElementById('b3-bar').style.cssText = `background:${barColor};width:${(s3/9)*100}%`;
+
+  rp.scrollIntoView({ behavior: 'smooth' });
+}
+
+// ─── Lead capture & Google Sheets ────────────────────────
+function submitLead() {
+  const name = document.getElementById('f-name').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const company = document.getElementById('f-company').value.trim();
+  if (!name || !email || !company) {
+    alert('Por favor completa al menos tu nombre, correo y empresa.');
+    return;
+  }
+
+  leadData = {
+    nombre: name,
+    email: email,
+    empresa: company,
+    tamano: document.getElementById('f-size').value,
+    pais: document.getElementById('f-country').value,
+    industria: document.getElementById('f-industry').value,
+    puntaje_total: total(),
+    puntaje_b1: b1(),
+    puntaje_b2: b2(),
+    puntaje_b3: b3(),
+    nivel: total() >= 24 ? 'Lista para Escalar' : total() >= 13 ? 'En Construcción' : 'En Riesgo',
+    fecha: new Date().toISOString()
+  };
+
+  // Send to Google Sheets via Apps Script Web App
+  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxncT1y5RYZDj0987KuAp3UcikyS-4tYQXrXFDI3tK_E7RBk57WfBBiU9LYuctp79mzvg/exec';
+
+  if (SHEET_URL !== 'https://script.google.com/macros/s/AKfycbxncT1y5RYZDj0987KuAp3UcikyS-4tYQXrXFDI3tK_E7RBk57WfBBiU9LYuctp79mzvg/exec') {
+    fetch(SHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(leadData)
+    }).catch(() => {});
+  }
+
+  // Hide form, show confirmation
+  document.getElementById('lead-form').style.display = 'none';
+  document.getElementById('confirmation').style.display = 'block';
+
+  // Set email CTA
+  const subject = encodeURIComponent('Diagnóstico HUMAN+AI™ — ' + company);
+  const body = encodeURIComponent(
+    'Hola Laura,\n\nAcabo de completar el Diagnóstico de Preparación AI de Elevate Consulting.\n\n' +
+    'Mi resultado: ' + leadData.nivel + ' (' + total() + '/30 puntos)\n\n' +
+    'Me gustaría conversar sobre los siguientes pasos.\n\nSaludos,\n' + name
+  );
+  document.getElementById('btn-contact').href = `mailto:lhernandez@elevatelatam.com?subject=${subject}&body=${body}`;
+
+  document.getElementById('confirmation').scrollIntoView({ behavior: 'smooth' });
+}
+
+// ─── PDF generation ───────────────────────────────────────
+function downloadPDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+
+  const W = 210, M = 20;
+  let y = 0;
+
+  const navy = [15, 27, 53];
+  const accent = [0, 200, 150];
+  const gray = [90, 90, 114];
+  const light = [247, 248, 252];
+
+  // Header bar
+  doc.setFillColor(...navy);
+  doc.rect(0, 0, W, 32, 'F');
+
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(7);
+  doc.setTextColor(0, 200, 150);
+  doc.text('ELEVATE CONSULTING · HUMAN+AI™', M, 12);
+
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(16);
+  doc.setTextColor(255, 255, 255);
+  doc.text('Índice de Preparación AI', M, 23);
+  doc.setFontSize(9);
+  doc.setTextColor(180, 200, 220);
+  doc.text('Diagnóstico Ejecutivo · ' + leadData.empresa, M, 29);
+
+  y = 44;
+
+  // Score section
+  const t = total();
+  const levelLabel = leadData.nivel;
+  let levelColor = t >= 24 ? [0, 200, 150] : t >= 13 ? [245, 166, 35] : [226, 68, 90];
+
+  doc.setFillColor(...levelColor);
+  doc.roundedRect(M, y, W - M*2, 28, 4, 4, 'F');
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(26);
+  doc.setTextColor(15, 27, 53);
+  doc.text(t + ' / 30', M + 8, y + 17);
+  doc.setFontSize(10);
+  doc.text(levelLabel.toUpperCase(), M + 55, y + 11);
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(9);
+  doc.setTextColor(15, 27, 53);
+
+  const titleMap = {
+    'Lista para Escalar': 'Tu empresa está lista para escalar con IA',
+    'En Construcción': 'Tu empresa crece — pero su estructura no está diseñada para la IA',
+    'En Riesgo': 'La IA ya llegó — y tu empresa no está lista para liderarla'
+  };
+  doc.text(titleMap[leadData.nivel] || '', M + 55, y + 21, { maxWidth: W - M*2 - 55 });
+
+  y += 36;
+
+  // Block scores
+  const blocks = [
+    { label: 'B1 · Talento y Dirección', score: b1(), max: 9 },
+    { label: 'B2 · Autoridad y Cultura', score: b2(), max: 12 },
+    { label: 'B3 · Adopción y Continuidad', score: b3(), max: 9 }
+  ];
+  const bW = (W - M*2 - 10) / 3;
+
+  blocks.forEach((b, i) => {
+    const x = M + i * (bW + 5);
+    doc.setFillColor(...light);
+    doc.roundedRect(x, y, bW, 24, 3, 3, 'F');
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(18);
+    doc.setTextColor(...navy);
+    doc.text('' + b.score, x + bW/2 - 6, y + 14);
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(7);
+    doc.setTextColor(...gray);
+    doc.text('/ ' + b.max + ' pts', x + bW/2 + 6, y + 14);
+    doc.setFontSize(6.5);
+    doc.text(b.label, x + bW/2, y + 21, { align: 'center' });
+    // Bar
+    const barW = bW - 10;
+    doc.setFillColor(220, 220, 230);
+    doc.roundedRect(x + 5, y + 22.5, barW, 1.5, 0.5, 0.5, 'F');
+    doc.setFillColor(...levelColor);
+    doc.roundedRect(x + 5, y + 22.5, barW * (b.score/b.max), 1.5, 0.5, 0.5, 'F');
+  });
+
+  y += 34;
+
+  // Interpretación
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(9);
+  doc.setTextColor(...navy);
+  doc.text('Interpretación de tu resultado', M, y);
+  y += 6;
+
+  const quoteMap = {
+    'Lista para Escalar': 'Tienes la mejor condición para actuar: estructura funcional y equipo con criterio. El siguiente nivel es instalar el sistema de adopción de IA con responsables internos y métricas reales — antes de que la ventana se cierre.',
+    'En Construcción': 'La IA amplifica lo que ya existe en tu cultura. Si lo que existe son decisiones que nadie toma y dependencia del fundador, ya sabes lo que viene. Puedes cerrarlo ahora — o esperar a que sea urgente.',
+    'En Riesgo': 'Lo que describes no es falta de voluntad — es falta de estructura. La IA no va a resolver esto: lo va a exponer. Esto no se resuelve con más esfuerzo tuyo. Se resuelve con un diagnóstico que muestre exactamente dónde están las grietas.'
+  };
+
+  doc.setFillColor(...light);
+  const quoteLines = doc.splitTextToSize('"' + (quoteMap[leadData.nivel] || '') + '"', W - M*2 - 12);
+  const quoteH = quoteLines.length * 5 + 8;
+  doc.roundedRect(M, y, W - M*2, quoteH, 3, 3, 'F');
+  doc.setFont('helvetica', 'italic');
+  doc.setFontSize(8.5);
+  doc.setTextColor(...gray);
+  doc.text(quoteLines, M + 6, y + 7);
+  y += quoteH + 8;
+
+  // Siguiente paso
+  const nextMap = {
+    'Lista para Escalar': 'El Diagnóstico Ejecutivo HUMAN+AI™ te dice exactamente quién está listo para liderar la adopción, dónde están las brechas reales de autoridad y qué estructura necesita tu empresa para que la IA dé retorno en los próximos 90 días — con datos, no con intuición.',
+    'En Construcción': 'Las brechas de este diagnóstico son solo el primer nivel. El Diagnóstico Ejecutivo HUMAN+AI™ mapea a cada líder, valida tu estructura de autoridad e identifica exactamente qué necesita tu empresa para que la IA dé retorno — sin más proyectos piloto aislados.',
+    'En Riesgo': 'Cada mes sin estructura cuesta talento, decisiones lentas y ROI perdido en IA. El Diagnóstico Ejecutivo HUMAN+AI™ identifica dónde están las grietas críticas, qué cambios generan resultado en los primeros 90 días y con quién cuentas de verdad para liderar lo que viene.'
+  };
+
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(9);
+  doc.setTextColor(...navy);
+  doc.text('▶ Siguiente paso recomendado', M, y);
+  y += 5;
+
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(8.5);
+  doc.setTextColor(40, 40, 60);
+  const nextLines = doc.splitTextToSize(nextMap[leadData.nivel] || '', W - M*2);
+  doc.text(nextLines, M, y);
+  y += nextLines.length * 5 + 10;
+
+  // Respuestas detalladas
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(9);
+  doc.setTextColor(...navy);
+  doc.text('Detalle de respuestas', M, y);
+  y += 5;
+
+  const qTexts = [
+    ['B1', '¿Sabes exactamente quién puede liderar transformación con IA sin ti?'],
+    ['B1', '¿Tu equipo directivo tiene claridad sobre qué decisiones puede tomar solo?'],
+    ['B1', '¿Tienes a alguien listo para asumir un rol crítico en menos de 30 días?'],
+    ['B2', '¿Cada líder tiene un plan de desarrollo individual activo?'],
+    ['B2', '¿Tu organización puede ejecutar sin que tú desatasques decisiones cada semana?'],
+    ['B2', '¿Tu cultura retendría al talento clave durante un cambio grande?'],
+    ['B2', '¿Tu equipo sabe qué parte de su rol es irreemplazable por la IA?'],
+    ['B3', '¿Tienes definido quién es el responsable de la adopción de IA?'],
+    ['B3', '¿La inversión en herramientas de IA genera resultados medibles?'],
+    ['B3', '¿El conocimiento crítico del negocio está documentado?']
+  ];
+
+  for (let i = 1; i <= 10; i++) {
+    if (y > 260) { doc.addPage(); y = 20; }
+    const sc = answers[i] || 0;
+    const [blk, qtxt] = qTexts[i-1];
+
+    doc.setFillColor(...light);
+    doc.roundedRect(M, y, W - M*2, 9, 2, 2, 'F');
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(7);
+    doc.setTextColor(...accent);
+    doc.text(`P${i} · ${blk}`, M + 3, y + 5.5);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(40, 40, 60);
+    const qLines = doc.splitTextToSize(qtxt, W - M*2 - 50);
+    doc.text(qLines[0], M + 22, y + 5.5);
+    // Score pill
+    doc.setFillColor(...levelColor);
+    doc.roundedRect(W - M - 14, y + 1.5, 14, 6, 2, 2, 'F');
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(8);
+    doc.setTextColor(15, 27, 53);
+    doc.text(sc + ' / 3', W - M - 11, y + 6);
+    y += 11;
+  }
+
+  y += 6;
+  if (y > 255) { doc.addPage(); y = 20; }
+
+  // Footer contact
+  doc.setFillColor(...navy);
+  doc.roundedRect(M, y, W - M*2, 22, 4, 4, 'F');
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(10);
+  doc.setTextColor(255, 255, 255);
+  doc.text('Laura Hernández · Elevate Consulting', M + 8, y + 9);
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(8);
+  doc.setTextColor(180, 200, 220);
+  doc.text('lhernandez@elevatelatam.com  ·  www.elevatelatam.com', M + 8, y + 16);
+
+  doc.setFontSize(7);
+  doc.setTextColor(...accent);
+  doc.text('Protocolo HUMAN+AI™ · Elevate Consulting 2025', W - M, y + 19, { align: 'right' });
+
+  // Save
+  const filename = 'Diagnostico-HUMANAI-' + (leadData.empresa || 'Resultado').replace(/[^a-zA-Z0-9]/g, '-') + '.pdf';
+  doc.save(filename);
+}
+</script>
+</body>
+</html>
