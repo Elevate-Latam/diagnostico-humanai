@@ -912,27 +912,25 @@ function submitLead() {
   // Send to Google Sheets via Apps Script Web App
   const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxncT1y5RYZDj0987KuAp3UcikyS-4tYQXrXFDI3tK_E7RBk57WfBBiU9LYuctp79mzvg/exec';
 
-  if (SHEET_URL !== 'https://script.google.com/macros/s/AKfycbxncT1y5RYZDj0987KuAp3UcikyS-4tYQXrXFDI3tK_E7RBk57WfBBiU9LYuctp79mzvg/exec') {
-    var iframe = document.createElement('iframe');
-    iframe.name = 'hidden_submit';
-    iframe.style.display = 'none';
-    document.body.appendChild(iframe);
+  var iframe = document.createElement('iframe');
+  iframe.name = 'hidden_submit';
+  iframe.style.display = 'none';
+  document.body.appendChild(iframe);
 
-    var form = document.createElement('form');
-    form.method = 'POST';
-    form.action = SHEET_URL;
-    form.target = 'hidden_submit';
-    form.style.display = 'none';
+  var form = document.createElement('form');
+  form.method = 'POST';
+  form.action = SHEET_URL;
+  form.target = 'hidden_submit';
+  form.style.display = 'none';
 
-    var field = document.createElement('input');
-    field.type = 'hidden';
-    field.name = 'payload';
-    field.value = JSON.stringify(leadData);
-    form.appendChild(field);
+  var field = document.createElement('input');
+  field.type = 'hidden';
+  field.name = 'payload';
+  field.value = JSON.stringify(leadData);
+  form.appendChild(field);
 
-    document.body.appendChild(form);
-    form.submit();
-  }
+  document.body.appendChild(form);
+  form.submit();
   
   // Hide form, show confirmation
   document.getElementById('lead-form').style.display = 'none';
